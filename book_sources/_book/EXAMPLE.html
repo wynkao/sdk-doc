@@ -76,10 +76,6 @@
     <div class="book-summary">
         
             
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
-
             
                 <nav role="navigation">
                 
@@ -88,51 +84,61 @@
 <ul class="summary">
     
     
-
+    
+    
+    <li>
+        <a href="https://customlink.com" target="_blank" class="custom-link">Home</a>
+    </li>
+    
     
 
     
+    <li class="divider"></li>
+    
+
+    
+    
+    
+
+<li class="chapter "
+    data-level="1.1" data-path="./" >
+    
+    <a href="./">
         
+                
+                Overview
+                
+        </a>
         
-    
-        <li class="chapter " data-level="1.1" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    Overview
-            
-                </a>
-            
 
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.2" data-path="EXAMPLE.html">
-            
-                <a href="EXAMPLE.html">
-            
-                    
-                    Quick start
-            
-                </a>
-            
+        
+</li>
 
-            
-        </li>
+<li class="chapter active"
+    data-level="1.2" data-path="EXAMPLE.html" >
     
+    <a href="EXAMPLE.html">
+        
+                
+                Quick start
+                
+        </a>
+        
+
+        
+</li>
+
 
     
 
     <li class="divider"></li>
 
-    <li>
+    <!-- <li>
         <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
             Published with GitBook
         </a>
-    </li>
+    </li> -->
 </ul>
-
 
                 </nav>
             
@@ -161,45 +167,54 @@
                     <div class="page-wrapper" tabindex="-1" role="main">
                         <div class="page-inner">
                             
-<div id="book-search-results">
-    <div class="search-noresults">
-    
                                 <section class="normal markdown-section">
                                 
                                 <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#quick-start"><b></b>Quick Start</a></li><ul><li><span class="title-icon "></span><a href="#get-access-token"><b></b>Get access token</a></li><li><span class="title-icon "></span><a href="#upload-data"><b></b>Upload data</a></li><li><span class="title-icon "></span><a href="#run-prediction"><b></b>Run prediction</a></li><li><span class="title-icon "></span><a href="#get-result"><b></b>Get result</a></li></ul></ul></div><a href="#quick-start" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="quick-start"><a name="quick-start" class="anchor-navigation-ex-anchor" href="#quick-start"><i class="fa fa-link" aria-hidden="true"></i></a>Quick Start</h1>
+<p>Here are examples of how to use our SDK to run your analysis.</p>
 <h2 id="get-access-token"><a name="get-access-token" class="anchor-navigation-ex-anchor" href="#get-access-token"><i class="fa fa-link" aria-hidden="true"></i></a>Get access token</h2>
 <hr>
+<pre><code class="lang-py"><span class="hljs-keyword">import</span> cytoturing <span class="hljs-keyword">as</span> ct
+
+email = <span class="hljs-string">&apos;your email&apos;</span>
+password = <span class="hljs-string">&apos;your password&apos;</span>
+auth_client = ct.client(<span class="hljs-string">&apos;authentication&apos;</span>)
+access_token = auth_client.get_access_token(email, password)
+</code></pre>
 <h2 id="upload-data"><a name="upload-data" class="anchor-navigation-ex-anchor" href="#upload-data"><i class="fa fa-link" aria-hidden="true"></i></a>Upload data</h2>
 <hr>
+<pre><code class="lang-py"><span class="hljs-keyword">import</span> cytoturing <span class="hljs-keyword">as</span> ct
+
+dir_path = <span class="hljs-string">&apos;path of your file folder&apos;</span>
+file_names = [List of your file names]
+file_ids = []
+<span class="hljs-keyword">for</span> file_name <span class="hljs-keyword">in</span> file_names:
+    file = f<span class="hljs-string">&apos;{dir_path}\\{file_name}&apos;</span>
+    file_client = ct.client(<span class="hljs-string">&apos;file_handler&apos;</span>)
+    file_id = file_client.upload_file(access_token, file)
+    file_ids.append(file_id
+print(<span class="hljs-string">&apos;file_ids:&apos;</span>, file_ids)
+</code></pre>
 <h2 id="run-prediction"><a name="run-prediction" class="anchor-navigation-ex-anchor" href="#run-prediction"><i class="fa fa-link" aria-hidden="true"></i></a>Run prediction</h2>
 <hr>
+<pre><code class="lang-py"><span class="hljs-keyword">import</span> cytoturing <span class="hljs-keyword">as</span> ct
+
+file_ids = [list of your file ids]
+analysis_client = ct.client(<span class="hljs-string">&apos;analysis&apos;</span>)
+analysis_id = analysis_client.run_predict(access_token, file_ids)
+print(<span class="hljs-string">&apos;analysis_id: &apos;</span>, analysis_id)
+</code></pre>
 <h2 id="get-result"><a name="get-result" class="anchor-navigation-ex-anchor" href="#get-result"><i class="fa fa-link" aria-hidden="true"></i></a>Get result</h2>
 <hr>
-<pre><code>import cytoturing as ct
+<pre><code class="lang-py"><span class="hljs-keyword">import</span> cytoturing <span class="hljs-keyword">as</span> ct
 
-analysis_client = ct.client(&apos;analysis&apos;)
+analysis_client = ct.client(<span class="hljs-string">&apos;analysis&apos;</span>)
 result = analysis_client.get_result(access_token, analysis_id)
 print(result)
 </code></pre>
+
                                 
                                 </section>
                             
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
-
                         </div>
                     </div>
                 
@@ -219,7 +234,7 @@ print(result)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Quick start","level":"1.2","depth":1,"previous":{"title":"Overview","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchor-navigation-ex","edit-link","copy-code-button","theme-comscore","livereload"],"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"night","family":"sans"},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":false,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"theme-comscore":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/wynkao/doc/edit/master/"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"EXAMPLE.md","mtime":"2022-07-28T03:34:29.479Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-28T04:31:40.253Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Quick start","level":"1.2","depth":1,"previous":{"title":"Overview","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchor-navigation-ex","copy-code-button","theme-comscore","highlight","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"night","family":"sans"},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":false,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"theme-comscore":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sidebar":{"Home":"https://customlink.com"},"sharing":{"facebook":null}},"gitbook":"*"},"file":{"path":"EXAMPLE.md","mtime":"2022-07-28T09:12:43.208Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-28T09:27:32.675Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -227,10 +242,6 @@ print(result)
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-edit-link/plugin.js"></script>
-        
     
         
         <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
